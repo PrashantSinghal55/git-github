@@ -1,0 +1,40 @@
+{
+    "name": "pipelinedls",
+    "properties": {
+        "activities": [
+            {
+                "name": "BlobTODLSshell",
+                "type": "Copy",
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false
+                },
+                "typeProperties": {
+                    "source": {
+                        "type": "BlobSource",
+                        "recursive": true
+                    },
+                    "sink": {
+                        "type": "AzureDataLakeStoreSink"
+                    },
+                    "enableStaging": false,
+                    "cloudDataMovementUnits": 0
+                },
+                "inputs": [
+                    {
+                        "referenceName": "InputData",
+                        "type": "DatasetReference"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "outputdls",
+                        "type": "DatasetReference"
+                    }
+                ]
+            }
+        ]
+    }
+}
